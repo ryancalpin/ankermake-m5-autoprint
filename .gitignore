@@ -1,0 +1,10 @@
+# Local config / state — never commit
+default.json
+login.json
+*.log
+*.h264
+*.jpg
+.DS_Store
+__pycache__/
+*.pyc
+.venv/

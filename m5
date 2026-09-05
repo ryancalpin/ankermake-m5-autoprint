@@ -1,0 +1,31 @@
+#!/bin/bash
+# m5 — daily-use wrapper around ankerctl for Ryan's AnkerMake M5.
+# Usage: m5 status | m5 monitor | m5 gcode | m5 send <num> | m5 print <file.gcode> | m5 find | m5 list
+A="$HOME/Documents/3D Printing/ankerctl"
+cd "$A" || exit 1
+
+case "${1:-help}" in
+  status)   shift; env -u PYTHONPATH ./.venv/bin/python3 ankerctl.py mqtt monitor "$@" ;;  # live state
+  monitor)  shift; env -u PYTHONPATH ./.venv/bin/python3 ankerctl.py mqtt monitor "$@" ;;
+  gcode)    shift; env -u PYTHONPATH ./.venv/bin/python3 ankerctl.py mqtt gcode "$@" ;;   # interactive gcode
+  send)     shift; env -u PYTHONPATH ./.venv/bin/python3 ankerctl.py mqtt send "$@" ;;
+  print)    shift; env -u PYTHONPATH ./.venv/bin/python3 ankerctl.py pppp print-file "$@" ;;
+  find)     shift; env -u PYTHONPATH ./.venv/bin/python3 ankerctl.py pppp lan-search "$@" ;;
+  list)     env -u PYTHONPATH ./.venv/bin/python3 ankerctl.py config show ;;
+  camera)   shift; env -u PYTHONPATH ./.venv/bin/python3 ankerctl.py pppp capture-video -m 16mb /tmp/m5cam.h264 ;;
+  watch)    shift; env -u PYTHONPATH ./.venv/bin/python3 m5-watch.py "$@" ;;   # watchdog (--auto-resume for AI-pause auto-recovery)
+  shot)     env -u PYTHONPATH ./.venv/bin/python3 ankerctl.py pppp capture-video -m 400kb /tmp/m5shot.h264 && ffmpeg -y -i /tmp/m5shot.h264 -frames:v 1 -update 1 /tmp/m5shot.jpg && echo "frame: /tmp/m5shot.jpg" ;;
+  refresh)  exec "$A/m5-setup.sh" ;;
+  *) cat <<'EOF'
+m5 — AnkerMake M5 controller (ankerctl wrapper)
+  m5 status            live printer state stream (temps, state)
+  m5 gcode             interactive gcode prompt (e.g. M105 = temps)
+  m5 send <num> k=v    send a raw MQTT command (e.g. 1002 = firmware query)
+  m5 print <file.gcode> upload file to printer and start printing
+  m5 find              probe LAN for the printer
+  m5 list              show account + printer config
+  m5 refresh           re-import account token + refresh printer IP
+  m5 camera            capture 16MB h264 from the printer cam
+EOF
+    ;;
+esac
