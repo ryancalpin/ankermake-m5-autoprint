@@ -1,5 +1,7 @@
 # ankerMake M5 AutoPrint
 
+![hero](assets/hero.svg)
+
 **Print to an AnkerMake M5 from the command line — design → slice → send → watch, fully unattended.**
 
 A workflow layer on top of the community [ankermake-m5-protocol](https://github.com/Ankermgmt/ankermake-m5-protocol) (`ankerctl`) that makes the M5 genuinely scriptable:

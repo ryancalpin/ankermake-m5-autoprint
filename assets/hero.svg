@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <!-- printer glyph -->
+  <g transform="translate(960,180)" opacity="0.9">
+    <!-- bed -->
+    <rect x="-160" y="180" width="320" height="18" rx="4" fill="#334155"/>
+    <rect x="-160" y="198" width="320" height="6" rx="2" fill="#1e293b"/>
+    <!-- part being printed -->
+    <rect x="-14" y="60" width="28" height="120" rx="6" fill="#22c55e"/>
+    <rect x="-14" y="60" width="28" height="120" rx="6" fill="none" stroke="#4ade80" stroke-width="1.5"/>
+    <!-- ribs visible at top -->
+    <rect x="-6" y="60" width="12" height="26" rx="2" fill="#0f172a" opacity="0.5"/>
+    <!-- gantry -->
+    <rect x="-200" y="30" width="400" height="12" rx="4" fill="#475569"/>
+    <rect x="-200" y="0" width="400" height="10" rx="3" fill="#475569"/>
+    <!-- z columns -->
+    <rect x="-196" y="10" width="12" height="200" rx="3" fill="#334155"/>
+    <rect x="184" y="10" width="12" height="200" rx="3" fill="#334155"/>
+    <!-- nozzle head -->
+    <rect x="-24" y="10" width="48" height="52" rx="6" fill="#64748b"/>
+    <polygon points="-10,62 10,62 6,80 -6,80" fill="#94a3b8"/>
+  </g>
+  <!-- title -->
+  <text x="80" y="120" font-family="SF Mono, Menlo, monospace" font-size="28" fill="#22c55e">~$</text>
+  <text x="140" y="120" font-family="SF Mono, Menlo, monospace" font-size="28" fill="#e2e8f0">./m5-print.sh handle_core.stl</text>
+  <text x="80" y="180" font-family="SF Mono, Menlo, monospace" font-size="20" fill="#64748b">→ sliced with real M5 profiles (235mm bed, PLA+ 230°/60°)</text>
+  <text x="80" y="215" font-family="SF Mono, Menlo, monospace" font-size="20" fill="#64748b">→ uploaded over PPPP · print started · watchdog armed</text>
+  <text x="80" y="290" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" fill="#f8fafc">ankerMake M5 AutoPrint</text>
+  <text x="80" y="340" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#94a3b8">Design → Slice → Send → Watch. Fully unattended 3D printing.</text>
+  <rect x="80" y="380" width="520" height="6" rx="3" fill="url(#accent)"/>
+  <text x="80" y="440" font-family="SF Mono, Menlo, monospace" font-size="18" fill="#64748b">STL → eufyMake CLI (real M5 G-code) → ankerctl PPPP → M5 prints</text>
+  <text x="80" y="470" font-family="SF Mono, Menlo, monospace" font-size="18" fill="#64748b">m5-watch: AI false-alarm recovery · camera evidence · auto-resume</text>
+  <text x="80" y="530" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#475569">Community protocol work: ankermake-m5-protocol (GPLv3) · this layer: MIT</text>
+</svg>
